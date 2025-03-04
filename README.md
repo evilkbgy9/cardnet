@@ -1,6 +1,6 @@
 # cardnet
 
-Your Telnet rig for the M5Stack Cardputer – a direct connection to the net, no wires, no jacks, just pure digital pulse.
+Your Telnet rig for the M5Stack Cardputer – a direct connection to the net.
 
 ## Download
 Ready to jack into the grid? Hit the [releases page](https://github.com/evilkbgy9/cardnet/releases) and grab the bin.
