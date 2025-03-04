@@ -10,3 +10,6 @@ First step: you gotta spin up a file called `wificred.txt` – slap that sucker 
 
 ## More Info
 This project’s a spinoff of [TelnetClient-M5Cardputer by aat440hz](https://github.com/aat440hz/TelnetClient-M5Cardputer/) – not much changed, just added a slick new way to store your wifi creds on the SD card instead of hardcoding 'em into the source code.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
