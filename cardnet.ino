@@ -1,4 +1,4 @@
-// CARDNET 1.0 FOR M5STACK CARDPUTER
+// CARDNET 1.1 FOR M5STACK CARDPUTER
 // BUILT 2025
 // MADE BY EVIL KBGY9 NEWS
 // https://github.com/evilkbgy9
@@ -102,10 +102,11 @@
   void setup() {
     
     auto cfg = M5.config();
+   
       M5Cardputer.begin(cfg, true);
-    M5Cardputer.Power.setLed(255);
+    
 
-    M5Cardputer.Display.println("CARDNET 1.0 FOR M5STACK CARDPUTER");
+    M5Cardputer.Display.println("CARDNET 1.1 FOR M5STACK CARDPUTER");
     M5Cardputer.Display.println("DEVELOPED BY EVIL KBGY9 NEWS");
     M5Cardputer.Display.println("https://github.com/evilkbgy9");
       M5Cardputer.Display.println("OG code by aat440hz on github");
@@ -140,7 +141,6 @@
       readFile(SD,"/wificred.txt");
 
     
-      M5Cardputer.Power.setLed(0);
       
       M5Cardputer.Display.setRotation(1);
       M5Cardputer.Display.setTextSize(1); // Set text size
@@ -151,17 +151,42 @@
   M5Cardputer.Display.println(trimAndConvertExact(ssid));
       WiFi.begin(trimAndConvertExact(ssid), trimAndConvertExact(password));
   delay(1000);
+  int ix=0;
       while (WiFi.status() != WL_CONNECTED) {
+        if(WiFi.status()==WL_NO_SSID_AVAIL){
+          M5Cardputer.Display.clear(TFT_RED);
+  M5Cardputer.Display.setCursor(0, 0);
+          M5Cardputer.Display.println("SSID not availible");
+          M5Cardputer.Display.println(trimAndConvertExact(ssid));
+          while(true){
+
+          }
+        }
+        ix++;
+        if(ix>10){
+           M5Cardputer.Display.clear(TFT_RED);
+  M5Cardputer.Display.setCursor(0, 0);
+          M5Cardputer.Display.println("CONNECTION FAILED, retrying");
+          delay(5000);
+           WiFi.begin(trimAndConvertExact(ssid), trimAndConvertExact(password));
+           
+           ix=0;
+           M5Cardputer.Display.clear(TFT_BLACK);
+            M5Cardputer.Display.setCursor(0, 0);
+        }
           delay(500);
-          M5Cardputer.Display.println(WiFi.status());
+          M5Cardputer.Display.print(".");
   
       }
       M5Cardputer.Display.println("connection complete.\n");
+      delay(500);
+       
       M5Cardputer.Display.println("CYBERDECK ONLINE");
   delay(3000);
 
   M5Cardputer.Display.clear(TFT_BLACK);
   M5Cardputer.Display.setCursor(0, 0);
+
       // Prompt for server address and optional port
       M5Cardputer.Display.print("Address:Port: ");
       String serverInput = waitForInput();
